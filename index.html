@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Gender Pay Gap</title>
+    <style type="text/css">
+      html {
+        opacity: 0;
+        transition: opacity 2s;
+      }
+      html:hover {
+        cursor: crosshair;
+      }
+      body {
+        margin: 10px;
+        font-family: sans-serif;
+        font-size: 14px;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+        color: #222;
+        line-height: 10px;
+      }
+      h1 {
+        font-weight: 400;
+      }
+      h2 {
+        font-size: 18px;
+        font-weight: 200;
+      }
+      circle.node {
+        opacity: 0.7;
+        transition: opacity 0.7s;
+      }
+      circle.highlighted {
+        opacity: 0.8 !important;
+      }
+      circle.highlighted:hover {
+        opacity: 1 !important;
+      }
+      circle.muted {
+        opacity: 0.1 !important;
+      }
+      circle.hidden {
+        opacity: 0 !important;
+        pointer-events: none;
+      }
+      circle.muted:hover {
+        opacity: 1 !important;
+      }
+      b {
+        font-size: 22px;
+        color: #222;
+      }
+      .tooltip {
+        line-height: 20px;
+        transition: opacity 0.5s;
+      }
+      .tooltip.hold {
+        opacity: 1 !important;
+      }
+      .x-axis,
+      .y-axis {
+        stroke-width: 0.5px;
+        opacity: 0.5;
+      }
+      .legend {
+        opacity: 0.5;
+        transition: opacity 0.3s;
+      }
+      .legend:hover {
+        opacity: 1 !important;
+        cursor: pointer;
+      }
+      .show-all {
+        transition: opacity 0.3s;
+        font-weight: 600;
+        pointer-events: none;
+      }
+      .show-all:hover {
+        cursor: pointer;
+      }
+      span.man,
+      span.woman {
+        font-weight: inherit;
+        background-color: rgba(0, 0, 0, 0);
+        background-position-x: 0%;
+        background-position-y: 0%;
+        background-repeat: repeat;
+        background-attachment: scroll;
+        background-size: auto auto;
+        background-origin: padding-box;
+        background-clip: border-box;
+        margin: 0 7px;
+      }
+      span.man {
+        background: linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 60%,
+          lightblue 60%,
+          lightblue 100%
+        );
+        background-image: linear-gradient(
+          transparent 0px,
+          transparent 60%,
+          lightblue 60%,
+          lightblue 100%
+        );
+      }
+      span.woman {
+        background: linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 60%,
+          lightpink 60%,
+          lightpink 100%
+        );
+        background-image: linear-gradient(
+          transparent 0px,
+          transparent 60%,
+          lightpink 60%,
+          lightpink 100%
+        );
+      }
+      span.difference {
+        font-size: 42px;
+        line-height: 40px;
+        color: #333;
+        transition: opacity 2s;
+      }
+    </style>
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      d3.select("html").style("opacity", 1);
+
+      // d3.select("body").append("h1").text("Gender Pay Gap").append("h2");
+
+      const draw = () => {
+        d3.select("html").style("pointer-events", "none");
+        window.setTimeout(() => {
+          d3.select("html").style("pointer-events", "all");
+        }, 2500);
+
+        let windowWith = window.innerWidth > 500 ? window.innerWidth : 500;
+
+        d3.select("html")
+          .style("max-width", "none")
+          .style("overflow-x", "inherit");
+
+        if (windowWith > 500)
+          d3.select("html")
+            .style("max-width", "100%")
+            .style("overflow-x", "hidden");
+
+        const margin = { top: 30, right: 50, bottom: 40, left: 40 };
+        const width = 700 - margin.left - margin.right;
+        const height = 700 - margin.top - margin.bottom;
+
+        const svg = d3
+          .select("body")
+          .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        const xScale = d3.scaleLinear().range([0, width]);
+        const yScale = d3.scaleLinear().range([height, 0]);
+        const radiusScale = d3.scaleLinear().range([2, 30]);
+        const colorScale = d3.scaleOrdinal(d3.schemeCategory20);
+
+        const xAxis = d3.axisBottom().scale(xScale).ticks(20, "s");
+        const yAxis = d3.axisLeft().scale(yScale).ticks(20, "s");
+
+        const domainColumn = "Median weekly earnings of Men ($)";
+        const rangeColumn = "Median weekly earnings of Women ($)";
+        const radiusColumn = "Pay gap ($)";
+        const categories = [
+          "Admin & organisation",
+          "Care & education",
+          "Creative & media",
+          "Law & justice",
+          "Manual Work",
+          "Sales & serving others",
+          "Science, tech & engineering",
+          "Senior managers & execs",
+        ];
+
+        d3.csv("Data/us_gender_pay_gap.csv", (error, data) => {
+          if (error) console.error("hmmm....");
+
+          const summaryPoints = [];
+          const seenOccupations = [];
+          data = data.filter((entry) => {
+            if (categories.indexOf(entry.Occupation) !== -1) {
+              summaryPoints.push(entry);
+              return false;
+            } else if (
+              !seenOccupations.includes(entry.Occupation) &&
+              !categories.includes(entry.Occupation)
+            ) {
+              seenOccupations.push(entry.Occupation);
+              return true;
+            }
+          });
+
+          data.forEach((d) => {
+            d[domainColumn] = +d[domainColumn];
+            d[rangeColumn] = +d[rangeColumn];
+            d[radiusColumn] = +d[radiusColumn];
+          });
+
+          xScale.domain([400, d3.max(data, (d) => d[domainColumn])]).nice();
+          yScale.domain([400, d3.max(data, (d) => d[rangeColumn])]).nice();
+
+          radiusScale
+            .domain(d3.extent(data, (d) => Math.abs(d[radiusColumn])))
+            .nice();
+
+          const ideal = svg
+            .append("line")
+            .style("stroke", "black")
+            .attr("x1", () => xScale(400))
+            .attr("y1", () => yScale(400))
+            .attr("x2", () => xScale(400))
+            .attr("y2", () => yScale(400))
+            .style("opacity", 0.2)
+            .transition()
+            .duration(2000)
+            .attr("x2", () => xScale(3000))
+            .attr("y2", () => yScale(3000));
+
+          svg
+            .append("g")
+            .attr("transform", `translate(0,${height})`)
+            .attr("class", "x-axis")
+            .call(xAxis);
+
+          svg
+            .append("g")
+            .attr("transform", "translate(0,0)")
+            .attr("class", "y-axis")
+            .call(yAxis);
+
+          const yLabel = svg
+            .append("text")
+            .attr("x", 10)
+            .attr("y", 10)
+            .attr("dominant-baseline", "middle")
+            .attr("class", "y-label")
+            .text("👩");
+
+          const xLabel = svg
+            .append("text")
+            .attr("x", width)
+            .attr("y", height - 10)
+            .attr("text-anchor", "middle")
+            .attr("class", "x-label")
+            .text("👨");
+
+          let tooltipFrozen = false;
+          const tooltip = d3
+            .select("body")
+            .append("span")
+            .attr("class", "tooltip")
+            .style("position", "absolute")
+            .style("left", "22%")
+            .style("top", "180px")
+            .style("opacity", 0);
+
+          const node = svg
+            .selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle");
+
+          node
+            .attr("cx", (d) => xScale(d[domainColumn]))
+            .attr("cy", (d) => yScale(d[rangeColumn]))
+            .style("fill", (d) => colorScale(d.Category))
+            .attr("r", () => radiusScale(-20))
+            .transition()
+            .duration(2500)
+            .attr("r", (d) => radiusScale(d[radiusColumn]))
+            .attr("class", "node");
+
+          node
+            .on("mouseover", function (d) {
+              !tooltipFrozen &&
+                xLabel.transition().attr("x", xScale(d[domainColumn]));
+              !tooltipFrozen &&
+                yLabel.transition().attr("y", yScale(d[rangeColumn]));
+              d3.selectAll("circle").style("opacity", 0.3);
+              d3.select(this).style("opacity", 1).append("text");
+              !tooltipFrozen &&
+                tooltip
+                  .classed("hold", false)
+                  .html(
+                    `<b>${d.Occupation}</b><br />
+              <span class='difference'>$${Math.abs(
+                d[radiusColumn]
+              ).toLocaleString()}</span>
+              ${d[radiusColumn] >= 0 ? "less" : "more"}<br />
+              <span class='man'>$${d[
+                domainColumn
+              ].toLocaleString()}</span>&nbsp;
+              <span class='woman'>$${d[rangeColumn].toLocaleString()}</span>
+            `
+                  )
+                  .style("opacity", 0.9);
+            })
+            .on("mouseout", (d) => {
+              d3.selectAll("circle").style("opacity", 0.7);
+              tooltip.style("opacity", 0);
+            })
+            .on("click", (node) => {
+              tooltipFrozen = true;
+              window.setTimeout(() => {
+                tooltipFrozen = false;
+              }, 1500);
+              d3.selectAll(".legend")
+                .style("opacity", 0.5)
+                .filter((d) => d == node.Category)
+                .style("opacity", 1);
+              showAll.style("opacity", 0.8).style("pointer-events", "all");
+              d3.selectAll("circle")
+                .classed("muted", true)
+                .classed("highlighted", false)
+                .filter((d) => d.Category == node.Category)
+                .classed("muted", false)
+                .classed("highlighted", true);
+              tooltip
+                .html(
+                  `<b>${node.Occupation}</b><br />
+                <span class='difference'>$${Math.abs(
+                  node[radiusColumn]
+                ).toLocaleString()}</span>
+                ${node[radiusColumn] >= 0 ? "less" : "more"}<br />
+                <span class='man'>$${node[
+                  domainColumn
+                ].toLocaleString()}</span>&nbsp;
+                <span class='woman'>$${node[
+                  rangeColumn
+                ].toLocaleString()}</span>
+              `
+                )
+                .classed("hold", true);
+            });
+
+          const legend = svg
+            .selectAll(".legend")
+            .data(colorScale.domain())
+            .enter()
+            .append("g")
+            .attr("transform", (d, i) => `translate(0,${i * 20})`)
+            .attr("class", "legend");
+
+          legend
+            .append("rect")
+            .attr("x", width)
+            .attr("width", 18)
+            .attr("height", 18)
+            .style("fill", colorScale);
+
+          legend
+            .append("text")
+            .attr("x", width - 6)
+            .attr("y", 9)
+            .attr("dy", ".35em")
+            .style("text-anchor", "end")
+            .text((d) => d);
+
+          legend.on("click", function (type) {
+            d3.selectAll(".legend").style("opacity", 0.5);
+            d3.select(this).style("opacity", 1);
+            showAll.style("opacity", 0.8).style("pointer-events", "all");
+            d3.selectAll("circle")
+              .classed("muted", false)
+              .classed("hidden", true)
+              .classed("highlighted", false)
+              .filter((d) => d.Category == type)
+              .classed("hidden", false)
+              .classed("highlighted", true);
+          });
+
+          legend.on("mouseover", (type) => {
+            d3.selectAll("circle")
+              .filter((d) => d.Category !== type)
+              .style("opacity", 0.15);
+          });
+
+          legend.on("mouseout", (type) => {
+            d3.selectAll("circle").style("opacity", 0.7);
+          });
+
+          const showAll = d3
+            .select("svg")
+            .append("g")
+            .append("text")
+            .attr("class", "show-all")
+            .attr("x", width + 56)
+            .attr("y", 205)
+            .attr("dy", ".35em")
+            .style("text-anchor", "end")
+            .style("opacity", 0)
+            .text("show all");
+
+          showAll.on("click", () => {
+            legend.style("opacity", 0.5);
+            showAll.style("opacity", 0).style("pointer-events", "none");
+            d3.selectAll("circle")
+              .classed("hidden", false)
+              .classed("highlighted", false)
+              .classed("muted", false);
+          });
+        });
+      };
+
+      window.addEventListener(
+        "resize",
+        () => {
+          d3.select("svg").remove();
+          d3.select(".tooltip").remove();
+          draw();
+        },
+        true
+      );
+
+      draw();
+    </script>
+  </body>
+</html>

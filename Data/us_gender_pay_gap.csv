@@ -1,0 +1,135 @@
+Occupation,Category,Median weekly earnings of Men ($),Median weekly earnings of Women ($),Pay gap ($),Pay gap as a percentage
+Claims adjusters appraisers examiners and investigators,admin & organisation,1468,1306,162,11.04%
+Compliance officers,admin & organisation,1597,1377,220,13.78%
+Human resources workers,admin & organisation,1367,1259,108,7.90%
+Training and development specialists,admin & organisation,1648,1222,426,25.85%
+Logisticians,admin & organisation,1207,994,213,17.65%
+Project management specialists,admin & organisation,1919,1661,258,13.44%
+Management analysts,admin & organisation,1993,1817,176,8.83%
+Business operations specialists all other,admin & organisation,1737,1224,513,29.53%
+Accountants and auditors,admin & organisation,1644,1504,140,8.52%
+Financial and investment analysts,admin & organisation,1760,1643,117,6.65%
+Other financial specialists,admin & organisation,2386,1233,1153,48.32%
+First-line supervisors of office and administrative support workers,admin & organisation,1209,1075,134,11.08%
+Bookkeeping accounting and auditing clerks,admin & organisation,1100,922,178,16.18%
+Financial clerks all other,admin & organisation,1335,1009,326,24.42%
+Receptionists and information clerks,admin & organisation,770,749,21,2.73%
+Dispatchers except police fire and ambulance,admin & organisation,1128,852,276,24.47%
+Production planning and expediting clerks,admin & organisation,1335,1333,2,0.15%
+Secretaries and administrative assistants except legal medical and executive,admin & organisation,1101,882,219,19.89%
+Data entry keyers,admin & organisation,819,809,10,1.22%
+Insurance claims and policy processing clerks,admin & organisation,1062,896,166,15.63%
+Office clerks general,admin & organisation,867,824,43,4.96%
+Office and administrative support workers all other,admin & organisation,1038,988,50,4.82%
+Educational guidance and career counselors and advisors,care & education,1227,1158,69,5.62%
+Counselors all other,care & education,1248,1011,237,18.99%
+Social workers all other,care & education,1253,1228,25,2.00%
+Social and human service assistants,care & education,967,962,5,0.52%
+Postsecondary teachers,care & education,1852,1565,287,15.50%
+Elementary and middle school teachers,care & education,1370,1220,150,10.95%
+Secondary school teachers,care & education,1347,1213,134,9.95%
+Other teachers and instructors,care & education,1242,1124,118,9.50%
+Teaching assistants,care & education,772,685,87,11.27%
+Pharmacists,care & education,2238,2180,58,2.59%
+Other physicians,care & education,2920,2907,13,0.45%
+Physical therapists,care & education,1715,1526,189,11.02%
+Registered nurses,care & education,1657,1409,248,14.97%
+Clinical laboratory technologists and technicians,care & education,1172,1089,83,7.08%
+Radiologic technologists and technicians,care & education,1483,1321,162,10.92%
+Pharmacy technicians,care & education,992,886,106,10.69%
+Licensed practical and licensed vocational nurses,care & education,1018,984,34,3.34%
+Home health aides,care & education,709,625,84,11.85%
+Personal care aides,care & education,751,668,83,11.05%
+Nursing assistants,care & education,765,695,70,9.15%
+Medical assistants,care & education,904,738,166,18.36%
+Other healthcare support workers,care & education,919,790,129,14.04%
+Graphic designers,creative & media,1294,1221,73,5.64%
+Other designers,creative & media,1495,1408,87,5.82%
+Producers and directors,creative & media,1312,1609,-297,-22.64%
+Lawyers,law & justice,2505,2330,175,6.99%
+Paralegals and legal assistants,law & justice,1425,1125,300,21.05%
+Correctional officers and jailers,law & justice,1133,914,219,19.33%
+Police officers,law & justice,1363,1034,329,24.14%
+Security guards and gambling surveillance officers,law & justice,811,717,94,11.59%
+First-line supervisors of housekeeping and janitorial workers,manual work,1050,699,351,33.43%
+Janitors and building cleaners,manual work,745,626,119,15.97%
+Maids and housekeeping cleaners,manual work,686,611,75,10.93%
+Couriers and messengers,manual work,885,711,174,19.66%
+Postal service mail carriers,manual work,1194,1015,179,14.99%
+Shipping receiving and inventory clerks,manual work,827,789,38,4.59%
+Miscellaneous agricultural workers,manual work,704,598,106,15.06%
+Construction laborers,manual work,870,711,159,18.28%
+First-line supervisors of production and operating workers,manual work,1263,914,349,27.63%
+Electrical electronics and electromechanical assemblers,manual work,887,782,105,11.84%
+Other assemblers and fabricators,manual work,852,758,94,11.03%
+Bakers,manual work,726,656,70,9.64%
+Butchers and other meat poultry and fish processing workers,manual work,818,696,122,14.91%
+Other metal workers and plastic workers,manual work,906,684,222,24.50%
+Inspectors testers sorters samplers and weighers,manual work,1010,809,201,19.90%
+Packaging and filling machine operators and tenders,manual work,752,698,54,7.18%
+Other production workers,manual work,893,771,122,13.66%
+Supervisors of transportation and material moving workers,manual work,1127,791,336,29.81%
+Bus drivers transit and intercity,manual work,979,811,168,17.16%
+Driver/sales workers and truck drivers,manual work,1016,734,282,27.76%
+Industrial truck and tractor operators,manual work,812,786,26,3.20%
+Cleaners of vehicles and equipment,manual work,704,605,99,14.06%
+Laborers and freight stock and material movers hand,manual work,801,685,116,14.48%
+Packers and packagers hand,manual work,732,667,65,8.88%
+Stockers and order fillers,manual work,730,667,63,8.63%
+Wholesale and retail buyers except farm products,sales & serving others,1270,1029,241,18.98%
+Purchasing agents except wholesale retail and farm products,sales & serving others,1514,1216,298,19.68%
+Market research analysts and marketing specialists,sales & serving others,1771,1552,219,12.37%
+Personal financial advisors,sales & serving others,2082,1552,530,25.46%
+Credit counselors and loan officers,sales & serving others,1457,1294,163,11.19%
+Chefs and head cooks,sales & serving others,854,690,164,19.20%
+First-line supervisors of food preparation and serving workers,sales & serving others,819,677,142,17.34%
+Cooks,sales & serving others,682,608,74,10.85%
+Food preparation workers,sales & serving others,645,600,45,6.98%
+Bartenders,sales & serving others,768,745,23,3.00%
+Fast food and counter workers,sales & serving others,639,595,44,6.89%
+Waiters and waitresses,sales & serving others,684,617,67,9.80%
+Dining room and cafeteria attendants and bartender helpers,sales & serving others,607,588,19,3.13%
+Recreation workers,sales & serving others,801,716,85,10.61%
+First-line supervisors of retail sales workers,sales & serving others,1094,904,190,17.37%
+First-line supervisors of non-retail sales workers,sales & serving others,1464,1151,313,21.38%
+Cashiers,sales & serving others,616,602,14,2.27%
+Retail salespersons,sales & serving others,988,710,278,28.14%
+Advertising sales agents,sales & serving others,1728,1398,330,19.10%
+Insurance sales agents,sales & serving others,1310,927,383,29.24%
+Securities commodities and financial services sales agents,sales & serving others,2412,1654,758,31.43%
+Sales representatives of services except advertising insurance financial services and travel,sales & serving others,1451,1137,314,21.64%
+Sales representatives wholesale and manufacturing,sales & serving others,1535,1215,320,20.85%
+Real estate brokers and sales agents,sales & serving others,1444,1215,229,15.86%
+Sales and related workers all other,sales & serving others,1019,807,212,20.80%
+Customer service representatives,sales & serving others,918,799,119,12.96%
+Computer systems analysts,"science, tech & engineering",1894,1487,407,21.49%
+Computer programmers,"science, tech & engineering",1906,1760,146,7.66%
+Software developers,"science, tech & engineering",2296,2020,276,12.02%
+Computer support specialists,"science, tech & engineering",1478,1348,130,8.80%
+Computer occupations all other,"science, tech & engineering",1631,1430,201,12.32%
+Operations research analysts,"science, tech & engineering",2208,1665,543,24.59%
+Other mathematical science occupations,"science, tech & engineering",1668,1474,194,11.63%
+Architects except landscape and naval,"science, tech & engineering",1893,1691,202,10.67%
+Civil engineers,"science, tech & engineering",1839,1465,374,20.34%
+Industrial engineers including health and safety,"science, tech & engineering",1766,1682,84,4.76%
+Engineers all other,"science, tech & engineering",1953,1904,49,2.51%
+Other engineering technologists and technicians except drafters,"science, tech & engineering",1287,982,305,23.70%
+Medical scientists,"science, tech & engineering",2290,1537,753,32.88%
+Physical scientists all other,"science, tech & engineering",1742,1649,93,5.34%
+Other life physical and social science technicians,"science, tech & engineering",1430,1275,155,10.84%
+Chief executives,senior managers & execs,2983,2520,463,15.52%
+General and operations managers,senior managers & execs,1689,1347,342,20.25%
+Marketing managers,senior managers & execs,1911,1746,165,8.63%
+Sales managers,senior managers & execs,2297,1688,609,26.51%
+Computer and information systems managers,senior managers & execs,2313,2192,121,5.23%
+Financial managers,senior managers & execs,2100,1497,603,28.71%
+Human resources managers,senior managers & execs,1891,1706,185,9.78%
+Purchasing managers,senior managers & execs,1879,1585,294,15.65%
+Transportation storage and distribution managers,senior managers & execs,1318,1219,99,7.51%
+Construction managers,senior managers & execs,1747,1431,316,18.09%
+Education and childcare administrators,senior managers & execs,1870,1469,401,21.44%
+Food service managers,senior managers & execs,1121,924,197,17.57%
+Medical and health services managers,senior managers & execs,1914,1540,374,19.54%
+Property real estate and community association managers,senior managers & execs,1521,1143,378,24.85%
+Social and community service managers,senior managers & execs,1501,1341,160,10.66%
+Managers all other,senior managers & execs,1887,1536,351,18.60%
