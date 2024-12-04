@@ -2,7 +2,7 @@
 
 [![Data](https://img.shields.io/badge/data-000?style=for-the-badge&-fi&logoColor=white)](https://www.bls.gov/opub/ted/2024/womens-earnings-were-83-6-percent-of-mens-in-2023.htm#:~:text=Women%20who%20were%20full%2Dtime,time%20wage%20and%20salary%20workers.)
 
-[![Visualization](https://img.shields.io/badge/data-000?style=for-the-badge&-fi&logoColor=white)](https://viz-for-gender-pay-disparity.vercel.app/)
+[![Visualization](https://img.shields.io/badge/visualization-000?style=for-the-badge&-fi&logoColor=white)](https://viz-for-gender-pay-disparity.vercel.app/)
 
 The data used is taken from the Bureau of Labor Statistics (US) for the year 2023. This dataset highlights the median weekly earnings of full-time wage and salary workers across various occupations in 2023, showcasing the differences in earnings between men and women.
 
